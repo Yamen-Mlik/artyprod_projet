@@ -1,0 +1,165 @@
+{% include 'home.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mon Agence de Design Graphique - Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+
+
+    .contact-section {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 50px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+        margin-top: 0;
+        color: #333;
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .contact-form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+    
+    .contact-form button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+    
+    .contact-form button:hover {
+        background-color: #45a049;
+        
+    }
+    
+    .contact-info h3 {
+        margin-top: 0;
+    }
+    
+    .map {
+        height: 300px;
+        background-color: #ddd;
+    }
+    .contact-info {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.contact-info h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+#map {
+  height: 400px;
+  width: 100%;
+}
+</style>
+
+</head>
+<body>
+    <div class="contact-section">
+        <h2>Contact</h2>
+
+
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <form action="{% url 'contact' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Envoyer</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Contact Information -->
+    <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p>Phone: +1 234 567 890</p>
+        <p>Email: contact.artyprod@gmail.com.com</p>
+        <p>Address: Sfax center , Sfax , Tunisie</p>
+    </div>
+    
+    
+    
+    <!-- Map -->
+          
+        <div id="map"></div>
+        <script>
+            function initMap() {
+              // Create a map centered at a specific location
+              // Create a map centered at a specific location (Sfax)
+var map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: 34.7391, lng: 10.7604},
+  zoom: 12
+});
+
+// Add a marker to the map (Sfax)
+var marker = new google.maps.Marker({
+  position: {lat: 34.7391, lng: 10.7604},
+  map: map,
+  title: 'Sfax'
+});
+
+            }
+            // Replace YOUR_API_KEY with your actual API key
+            function loadMapScript() {
+              var script = document.createElement("script");
+              script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBh4ngpvBrOe1E7nhP4pKjpPN274XGLBXM&callback=initMap" ;
+              script.async = true;
+              script.defer = true;
+              document.body.appendChild(script);
+            }
+            // Call the function to load the map script
+            loadMapScript();
+          </script>
+</div>
+
+</body>
+</html>

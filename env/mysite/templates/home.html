@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mon Agence de Design Graphique</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+       .navbar {
+    background-color: #623fc2;
+    padding: 10px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #c5bfda;
+}
+
+.nav-item.dropdown .dropdown-menu {
+    background-color: #333;
+    border: none;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item.dropdown .dropdown-menu a {
+    color: #fff;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-item.dropdown .dropdown-menu a:hover {
+    background-color: #555;
+}
+
+.nav-item.active {
+    background-color: #555;
+}
+
+.nav-link.user-name {
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-link.user-name:hover {
+    color: #eee;
+}
+
+.nav-link.logout-link {
+    color: #c00;
+    font-weight: bold;
+}
+
+.nav-link.logout-link:hover {
+    color: #a00;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        background-color: #333;
+        padding: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        border-bottom: 1px solid #555;
+        padding: 10px;
+    }
+
+    .navbar-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .navbar-collapse {
+        margin-top: 10px;
+    }
+
+} .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px; /* Set the desired height for the logo container */
+        background-color: transparent; /* Remove the background color */
+    }
+
+    .logo-container img {
+        max-height: 100%; /* Adjust the maximum height of the logo image */
+        max-width: 100%; /* Adjust the maximum width of the logo image */
+    }
+
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Services
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       
+                        <a class="dropdown-item" href="{% url 'demande_service' %}">demande un service</a>
+                        <a class="dropdown-item" href="{% url 'service_demande_list' %}">mes demande</a>
+                        
+                        {% if request.user.is_superuser %}
+                        <a class="dropdown-item" href="{% url 'service_demande_list' %}">liste des demandes</a>
+                        {% endif %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'equipe' %}">Équipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                </li>
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Adminstration</a>
+                </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                    <a class="nav-link user-name" href="#">{{ user }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link logout-link" href="{% url 'logout' %}">Déconnexion</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Inscription</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

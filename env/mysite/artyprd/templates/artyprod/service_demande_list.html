@@ -1,0 +1,33 @@
+{% include 'home.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Liste des demandes de service</h2>
+    <div class="card">
+      <div class="card-body">
+        {% if demandes %}
+          <ul class="list-group">
+            {% for demande in demandes %}
+              <li class="list-group-item">
+                <span class="demande-type">{{ demande.type }}</span> - {{ demande.description }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted">Aucune demande de service n'a été soumise.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+<style>
+  .demande-type {
+    font-weight: bold;
+    color: #336699;
+  }
+  
+  .text-muted {
+    color: #999999;
+  }
+</style>

@@ -1,0 +1,41 @@
+{% include 'home.html' %}
+<style>.card-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #777;
+}
+
+.status-completed {
+    color: green;
+    font-weight: bold;
+}
+
+.status-in-progress {
+    color: orange;
+    font-weight: bold;
+}
+</style>
+{% block content %}
+<div class="container">
+    <h1>Project Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ projet.libelle }}</h5>
+            <p class="card-text">{{ projet.description }}</p>
+            <p class="card-text">Start Date: {{ projet.date_debut }}</p>
+            <p class="card-text">End Date: {{ projet.date_fin }}</p>
+            {% if projet.acheve %}
+                <p class="card-text status-completed">Status: Completed</p>
+            {% else %}
+                <p class="card-text status-in-progress">Status: In Progress</p>
+            {% endif %}
+            <p class="card-text">Equipe: {{ projet.equipe }}</p>
+            <p class="card-text">Service: {{ projet.service }}</p>
+            <p class="card-text">Details: <a href="{{ projet.details.fichier.url }}">{{ projet.details.fichier.name }}</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

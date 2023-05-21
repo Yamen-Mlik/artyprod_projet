@@ -1,0 +1,10 @@
+{% include 'home.html' %}
+
+{% block content %}
+  <h1>Delete Personnel</h1>
+  <p>Are you sure you want to delete the personnel "{{ personnel.name }}"?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirm Delete</button>
+  </form>
+{% endblock %}
